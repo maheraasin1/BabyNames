@@ -46,5 +46,15 @@ public class BabyNameQueries {
         }
     }
 
-    // Add more methods for remaining queries.
+    public void mostCommonBoysNameUS1991(Connection connection) throws SQLException {
+        String query = "SELECT NAME, SUM(NUM_BABIES) AS TotalBabies " +
+                       "FROM babynames WHERE GENDER = 'M' AND DATE_YEAR = 1991 " +
+                       "GROUP BY NAME ORDER BY TotalBabies DESC FETCH FIRST 1 ROW ONLY";
+
+        try (Statement statement = connection.createStatement(); ResultSet rs = statement.executeQuery(query)) {
+            if (rs.next()) {
+                System.out.println("Most common boy's name in the US in 1991: " + rs.getString("NAME"));
+            }
+        }
+    }
 }

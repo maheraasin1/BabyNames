@@ -6,15 +6,16 @@ public class Main {
         try (Connection connection = DatabaseConnection.getConnection()) {
             System.out.println("Connected to the database!");
 
+            // Create an instance of the queries class
             BabyNameQueries queries = new BabyNameQueries();
 
-            // Execute queries step by step
+            // Execute each query step by step
             queries.mostCommonGirlsNameInMaryland1995(connection);
             queries.mostBoysNamedJohn(connection);
             queries.addRow(connection);
             queries.deleteRow(connection);
+            queries.mostCommonBoysNameUS1991(connection);
 
-            // Add calls to remaining query methods here
         } catch (Exception e) {
             e.printStackTrace();
         }
